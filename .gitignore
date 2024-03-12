@@ -1,0 +1,16 @@
+# external files
+/external/*
+# vscode files 
+.vscode
+# terraform files 
+**/.terraform/*
+*.hcl
+# .tfstate files
+*.tfstate
+*.tfstate.*
+# .tfvars files 
+*.tfvars
+*.tfvars.json
+# other files 
+**/*.DS_Store
+**/__pycache__/
