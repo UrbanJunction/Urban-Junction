@@ -12,17 +12,17 @@ variable "location" {
 variable "resource_group_name" {
     description = "name of resource group to create"
     type = string 
-    default = "urban_junction_resource_group"
+    default = "urban-junction-resource-group"
 }
 
 variable "key_vault_name" {
     description = "name for key vault"
     type = string
-    default = "urban_junction_vault"
+    default = "urban-junction-vault"
 }
 
 variable "ny511_secret_name" {
     description = "name for NY511 API key secret"
     type = string
-    default = "ny511_api_secret"
+    default = "ny511-api-secret"
 }

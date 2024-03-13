@@ -10,7 +10,7 @@ resource "azurerm_key_vault" "urban_junction_key_vault" {
     soft_delete_retention_days = 7
     purge_protection_enabled = false 
     sku_name = "standard"
-    tenant_id = azurerm_client_config.current.tenant_id
+    tenant_id = data.azurerm_client_config.current.tenant_id
 }
 
 resource "azurerm_key_vault_secret" "ny511_secret" {
