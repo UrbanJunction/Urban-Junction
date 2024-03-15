@@ -2,6 +2,8 @@
 import requests 
 import logging 
 import json 
+from azure.keyvault.secrets import SecretClient
+from azure.identity import DefaultAzureCredential
 
 class input_output():
     """
@@ -13,7 +15,11 @@ class input_output():
         """
         Generator function
         """
-        self.api_key = ''
+        with open('terraform/terraform.tfstate','r') as f:
+            outputs = json.load(f)['outputs']
+        credential = DefaultAzureCredential()
+        client = SecretClient(vault_url=outputs['vault_uri']['value'],credential=credential)
+        self.api_key = client.get_secret(outputs['secret_511ny_name']['value']).value
 
     def get(self,url):
         """
@@ -110,5 +116,5 @@ class input_output():
 if __name__ == '__main__':
     # test = input_output()
     # data = test.GETEVENTS()
-    # print(data[0])
+    # print(data)
     pass
