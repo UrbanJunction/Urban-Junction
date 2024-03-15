@@ -114,7 +114,7 @@ class input_output():
         return self.get(f'https://511ny.org/api/getwinterroadconditions?key={self.api_key}&format={format}')
 
 if __name__ == '__main__':
-    # test = input_output()
-    # data = test.GETEVENTS()
-    # print(data)
+    test = input_output()
+    data = test.GETEVENTS()
+    print(data)
     pass
