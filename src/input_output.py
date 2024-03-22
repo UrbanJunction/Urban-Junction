@@ -2,8 +2,8 @@
 import requests 
 import logging 
 import json 
-from azure.keyvault.secrets import SecretClient
-from azure.identity import DefaultAzureCredential
+import boto3 
+from botocore.exceptions import ClientError
 
 class input_output():
     """
@@ -15,11 +15,22 @@ class input_output():
         """
         Generator function
         """
+        #retrieve name of secret and aws region
         with open('terraform/terraform.tfstate','r') as f:
             outputs = json.load(f)['outputs']
-        credential = DefaultAzureCredential()
-        client = SecretClient(vault_url=outputs['vault_uri']['value'],credential=credential)
-        self.api_key = client.get_secret(outputs['secret_511ny_name']['value']).value
+        secret_name = outputs['secret_name_511ny']['value']
+        region_name = outputs['region']['value']
+
+        #create secret manager client 
+        session = boto3.session.Session()
+        client = session.client(service_name='secretsmanager',region_name=region_name)
+
+        #attempt to retrieve secret value 
+        try:
+            self.api_key = client.get_secret_value(SecretId=secret_name)['SecretString']
+        except ClientError as e:
+            raise e
+        
 
     def get(self,url):
         """
