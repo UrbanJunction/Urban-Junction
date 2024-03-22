@@ -1,15 +1,13 @@
 terraform {
-    required_providers {
-      azurerm = {
-        source = "hashicorp/azurerm"
-      }
+  required_providers {
+    # declare aws required provider as requirement for configuration 
+    aws = {
+      source = "hashicorp/aws"
     }
+  }
 }
-
-provider "azurerm" {
-  skip_provider_registration = true 
-  features {}
-}
-
-data "azurerm_client_config" "current" {
+#configuration for aws provider 
+provider "aws" {
+  #define service region 
+  region = var.region
 }

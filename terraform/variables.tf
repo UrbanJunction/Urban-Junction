@@ -3,26 +3,20 @@ variable "ny511_key" {
     type = string
 }
 
-variable "location" {
-    description = "azure location"
+variable "region" {
+    description = "aws service region"
     type = string 
-    default = "East US"
-}
-
-variable "resource_group_name" {
-    description = "name of resource group to create"
-    type = string 
-    default = "urban-junction-resource-group"
-}
-
-variable "key_vault_name" {
-    description = "name for key vault"
-    type = string
-    default = "urban-junction-vault"
+    default = "us-east-2"
 }
 
 variable "ny511_secret_name" {
     description = "name for NY511 API key secret"
     type = string
     default = "ny511-api-secret"
+}
+
+variable "secrets_manager_recovery_in_days" {
+  type        = number
+  default     = 0
+  description = "Deletion delay for AWS Secrets Manager upon resource destruction"
 }

@@ -1,7 +1,7 @@
-output "vault_uri" {
-  value = azurerm_key_vault.urban_junction_key_vault.vault_uri
+output "secret_name_511ny" {
+  value = aws_secretsmanager_secret.api_key_511ny.name
 }
 
-output "secret_511ny_name" {
-  value = azurerm_key_vault_secret.ny511_secret.name
+output "region" {
+  value = var.region
 }
